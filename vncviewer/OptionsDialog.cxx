@@ -353,6 +353,7 @@ void OptionsDialog::loadOptions(void)
   sharedCheckbox->value(shared);
   reconnectCheckbox->value(reconnectOnError);
   dotCursorCheckbox->value(dotWhenNoCursor);
+  mouseWheelMultiplierInput->value(mouseWheelMultiplier.getValueStr().c_str());
 }
 
 
@@ -386,6 +387,7 @@ void OptionsDialog::storeOptions(void)
   noJpeg.setParam(!jpegCheckbox->value());
   compressLevel.setParam(atoi(compressionInput->value()));
   qualityLevel.setParam(atoi(jpegInput->value()));
+  mouseWheelMultiplier.setParam(mouseWheelMultiplierInput->value());
 
 #if defined(HAVE_GNUTLS) || defined(HAVE_NETTLE)
   /* Security */
@@ -844,6 +846,13 @@ void OptionsDialog::createInputPage(int tx, int ty, int tw, int th)
                                                     CHECK_MIN_WIDTH,
                                                     CHECK_HEIGHT,
                                                     _("Show dot when no cursor")));
+    ty += CHECK_HEIGHT + TIGHT_MARGIN;
+
+
+    mouseWheelMultiplierInput = new Fl_Int_Input(LBLLEFT(tx, ty,
+                                                200, INPUT_HEIGHT,
+                                                _("Mouse wheel multiplier")));
+
     ty += CHECK_HEIGHT + TIGHT_MARGIN;
   }
   ty -= TIGHT_MARGIN;

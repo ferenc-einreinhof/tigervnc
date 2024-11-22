@@ -681,6 +681,11 @@ void Viewport::sendPointerEvent(const rfb::Point& pos, uint16_t buttonMask)
   if ((pointerEventInterval == 0) || (buttonMask != lastButtonMask)) {
     try {
       cc->writer()->writePointerEvent(pos, buttonMask);
+      if ((buttonMask & 24) && mouseWheelMultiplier > 1) {
+        for (int i=0; i<mouseWheelMultiplier-1; i++) {
+          cc->writer()->writePointerEvent(pos, buttonMask & 24);
+        }
+      }
     } catch (std::exception& e) {
       vlog.error("%s", e.what());
       abort_connection_with_unexpected_error(e);

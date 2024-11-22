@@ -32,6 +32,7 @@
 
 
 extern rfb::IntParameter pointerEventInterval;
+extern rfb::IntParameter mouseWheelMultiplier;
 extern rfb::BoolParameter emulateMiddleButton;
 extern rfb::BoolParameter dotWhenNoCursor;
 

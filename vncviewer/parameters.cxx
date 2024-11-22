@@ -66,7 +66,9 @@ BoolParameter emulateMiddleButton("EmulateMiddleButton",
 BoolParameter dotWhenNoCursor("DotWhenNoCursor",
                               "Show the dot cursor when the server sends an "
                               "invisible cursor", false);
-
+IntParameter mouseWheelMultiplier("MouseWheelMultiplier",
+                                  "Speed up the mouse wheel"
+                                  , 1);
 BoolParameter alertOnFatalError("AlertOnFatalError",
                                 "Give a dialog on connection problems rather "
                                 "than exiting immediately", true);
@@ -202,6 +204,7 @@ static VoidParameter* parameterArray[] = {
   &viewOnly,
   &emulateMiddleButton,
   &dotWhenNoCursor,
+  &mouseWheelMultiplier,
   &acceptClipboard,
   &sendClipboard,
 #if !defined(WIN32) && !defined(__APPLE__)
